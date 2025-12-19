@@ -1,6 +1,6 @@
-# CorrData Cookbook
+# AI Playbook
 
-A collection of battle-tested recipes for building, operating, and scaling CorrData.
+A collection of battle-tested recipes for building, operating, and scaling ai company.
 
 ## Quick Start
 
