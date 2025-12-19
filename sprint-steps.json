@@ -1,0 +1,259 @@
+{
+  "version": "2.1",
+  "description": "Optimized sprint workflow with staged parallelism and flexible TDD",
+  "philosophy": {
+    "parallelism": "staged",
+    "tdd": "flexible",
+    "gates": "single_at_end",
+    "skills": "agent_invoked"
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Planning",
+      "description": "Read sprint, design architecture, clarify requirements, assign team",
+      "parallel": false,
+      "steps": [
+        {
+          "step": "1.1",
+          "name": "Read Sprint File",
+          "description": "Find and read the sprint planning document",
+          "agent": null,
+          "validation": {
+            "type": "file_read",
+            "check": "sprint_file in state"
+          },
+          "outputs": ["sprint_file", "sprint_title", "sprint_type"]
+        },
+        {
+          "step": "1.2",
+          "name": "Spawn Plan Agent",
+          "description": "Design implementation approach and team composition",
+          "agent": "Plan",
+          "validation": {
+            "type": "state_field",
+            "check": "plan_output exists with team_composition"
+          },
+          "outputs": ["plan_output", "team_composition", "file_ownership"]
+        },
+        {
+          "step": "1.3",
+          "name": "Clarify Requirements",
+          "description": "Ask user questions about ambiguous requirements before implementation",
+          "agent": null,
+          "validation": {
+            "type": "user_confirmation",
+            "check": "user confirmed requirements are clear"
+          },
+          "outputs": ["clarifications"],
+          "requires_user_input": true
+        },
+        {
+          "step": "1.4",
+          "name": "Document Team Strategy",
+          "description": "Update sprint file with team composition and integration strategy",
+          "agent": null,
+          "validation": {
+            "type": "file_content",
+            "check": "sprint file has Team Strategy section"
+          },
+          "outputs": []
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Implementation",
+      "description": "Parallel implementation with tests alongside code",
+      "parallel": true,
+      "parallel_strategy": "staged",
+      "steps": [
+        {
+          "step": "2.1",
+          "name": "Backend Implementation",
+          "description": "Implement models, migrations, and backend logic",
+          "agent": "product-engineer",
+          "file_types": ["models", "migrations", "services", "api"],
+          "skills": ["run-migrations", "validate-mcp"],
+          "validation": {
+            "type": "files_created",
+            "check": "backend files from plan exist"
+          },
+          "outputs": ["backend_files"]
+        },
+        {
+          "step": "2.2",
+          "name": "Frontend Implementation",
+          "description": "Implement UI components and pages",
+          "agent": "product-engineer",
+          "file_types": ["components", "pages", "hooks"],
+          "skills": ["validate-graphql"],
+          "validation": {
+            "type": "files_created",
+            "check": "frontend files from plan exist"
+          },
+          "outputs": ["frontend_files"],
+          "conditional": "sprint requires frontend"
+        },
+        {
+          "step": "2.3",
+          "name": "Test Implementation",
+          "description": "Write tests for sprint requirements",
+          "agent": "quality-engineer",
+          "file_types": ["tests"],
+          "skills": ["check-coverage"],
+          "validation": {
+            "type": "file_exists",
+            "check": "tests/test_sprint{N}_*.py exists"
+          },
+          "outputs": ["test_files"]
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Integration & Validation",
+      "description": "Integrate parallel work, run all tests, quality review",
+      "parallel": false,
+      "steps": [
+        {
+          "step": "3.1",
+          "name": "Integration",
+          "description": "Parent agent integrates work from parallel agents",
+          "agent": null,
+          "validation": {
+            "type": "state_field",
+            "check": "integration_complete == true"
+          },
+          "outputs": ["integration_conflicts"]
+        },
+        {
+          "step": "3.2",
+          "name": "Run All Tests",
+          "description": "Execute full test suite including sprint tests",
+          "agent": "test-runner",
+          "skills": ["check-coverage"],
+          "validation": {
+            "type": "test_status",
+            "check": "test_results.failed == 0 AND coverage >= 85"
+          },
+          "outputs": ["test_results", "coverage_percentage"]
+        },
+        {
+          "step": "3.3",
+          "name": "Quality Review",
+          "description": "Review code quality, fix issues, lint and format",
+          "agent": "quality-engineer",
+          "skills": ["lint-fix"],
+          "validation": {
+            "type": "state_field",
+            "check": "quality_review_complete == true"
+          },
+          "outputs": ["quality_issues"]
+        },
+        {
+          "step": "3.4",
+          "name": "User Approval Gate",
+          "description": "Single gate: user reviews and approves for commit",
+          "agent": null,
+          "validation": {
+            "type": "user_approval",
+            "check": "user approved commit"
+          },
+          "outputs": [],
+          "gate": true,
+          "requires_user_input": true
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Commit & Complete",
+      "description": "Commit changes, update sprint file, run postmortem",
+      "parallel": false,
+      "steps": [
+        {
+          "step": "4.1",
+          "name": "Git Commit",
+          "description": "Stage and commit with proper message format",
+          "agent": null,
+          "validation": {
+            "type": "git_status",
+            "check": "working directory clean"
+          },
+          "outputs": ["commit_hash"]
+        },
+        {
+          "step": "4.2",
+          "name": "Update Sprint File",
+          "description": "Set status to done, completed date, move to done folder",
+          "agent": null,
+          "validation": {
+            "type": "file_location",
+            "check": "sprint file in docs/sprints/4-done/"
+          },
+          "outputs": ["final_sprint_path"]
+        },
+        {
+          "step": "4.3",
+          "name": "Postmortem",
+          "description": "Capture learnings, agent work summary, improvements",
+          "agent": null,
+          "validation": {
+            "type": "file_content",
+            "check": "sprint file has Postmortem section"
+          },
+          "outputs": ["postmortem_summary"]
+        },
+        {
+          "step": "4.4",
+          "name": "Final Commit",
+          "description": "Commit sprint file updates and postmortem",
+          "agent": null,
+          "validation": {
+            "type": "git_status",
+            "check": "sprint completion changes committed"
+          },
+          "outputs": ["completion_commit_hash"]
+        }
+      ]
+    }
+  ],
+  "step_order": [
+    "1.1", "1.2", "1.3", "1.4",
+    "2.1", "2.2", "2.3",
+    "3.1", "3.2", "3.3", "3.4",
+    "4.1", "4.2", "4.3", "4.4"
+  ],
+  "sprint_types": {
+    "backend-only": {
+      "skip_steps": ["2.2"],
+      "skills": ["run-migrations", "validate-mcp", "check-coverage"]
+    },
+    "frontend-only": {
+      "skip_steps": ["2.1"],
+      "skills": ["validate-graphql", "check-coverage"]
+    },
+    "fullstack": {
+      "skip_steps": [],
+      "skills": ["run-migrations", "validate-mcp", "validate-graphql", "check-coverage"]
+    },
+    "integration": {
+      "skip_steps": [],
+      "skills": ["validate-graphql", "validate-mcp", "check-coverage"]
+    },
+    "data-layer": {
+      "skip_steps": ["2.2"],
+      "skills": ["run-migrations", "check-coverage"]
+    }
+  },
+  "skills_available": [
+    "validate-graphql",
+    "validate-mcp",
+    "check-coverage",
+    "run-migrations",
+    "lint-fix",
+    "smoke-tests",
+    "build-pwa"
+  ]
+}

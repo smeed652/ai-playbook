@@ -1,223 +1,169 @@
-# AI Playbook
+# ai-playbook
 
-A collection of battle-tested recipes for building, operating, and scaling ai company.
+Battle-tested patterns, workflows, and tools for AI-assisted software development with Claude Code.
 
 ## Quick Start
 
-**New to the cookbook?** Here's how to get started:
+### New Machine Setup
 
 ```bash
-# Find a recipe for what you're doing
-grep -r "your-topic" docs/cookbook/
+# Clone the playbook
+git clone https://github.com/smeed652/ai-playbook.git
+cd ai-playbook
 
-# Or browse by category
-ls docs/cookbook/workflows/   # Development processes
-ls docs/cookbook/patterns/    # Code patterns
-ls docs/cookbook/playbooks/   # Operations guides
+# Set up Claude Code symlinks
+./scripts/setup-claude.sh
 ```
 
-**Common tasks:**
-| I want to... | Read this recipe |
-|--------------|------------------|
-| Set up VS Code for development | [VS Code Setup](workflows/vscode-setup.md) |
-| Start a new sprint | [Sprint Workflow v2.2](workflows/sprint-workflow-v2.md) |
-| Understand our tech stack | [Tech Stack Reference](patterns/tech-stack-reference.md) |
-| Know what to build first | [Development Sequence](workflows/development-sequence.md) |
-| Generate UI with v0.dev | [v0 UI Generation](playbooks/v0-ui-generation.md) |
-| Add a GraphQL module | [GraphQL Schema Design](patterns/graphql-schema.md) |
-| Add external data source | [Adding External Data Source](playbooks/adding-external-data-source.md) |
-| Add an MCP tool | [Onboarding MCP Tool](playbooks/onboarding-mcp-tool.md) |
-| Create REST endpoint | [Creating REST Endpoint](playbooks/creating-rest-endpoint.md) |
-| Set up deployment | [Deployment Setup](playbooks/deployment-setup.md) |
-| Understand our patterns | [Three-Layer Database](patterns/three-layer-database.md) |
+### New Project Setup
 
-## Philosophy
-
-This cookbook captures **what actually works** - not theory, but proven patterns extracted from real sprints, real failures, and real wins. Every recipe includes:
-
-1. **Context** - When and why to use this recipe
-2. **Ingredients** - What you need before starting
-3. **Steps** - Clear, actionable instructions
-4. **Learnings** - What we discovered along the way
-5. **Anti-patterns** - What NOT to do
-
-## Structure
-
-```
-cookbook/
-├── workflows/       # Development & operational workflows
-│   ├── sprint-workflow-v2.md      # Parallel agent sprint execution
-│   ├── development-infrastructure.md # Agents, skills, commands
-│   ├── documentation-approach.md  # How we document
-│   └── epic-planning.md           # Multi-sprint epic management
-│
-├── patterns/        # Reusable code patterns
-│   ├── graphql-module.md          # Adding new GraphQL modules
-│   ├── mcp-tool.md                # Creating MCP tools
-│   ├── migration-pattern.md       # Database migrations
-│   └── provider-pattern.md        # External data providers
-│
-├── integrations/    # External system integrations
-│   ├── fema-flood-zones.md        # FEMA NFHL integration
-│   ├── usgs-seismicity.md         # Earthquake data
-│   ├── npms-pipeline-data.md      # Pipeline registry
-│   └── insar-subsidence.md        # Satellite displacement
-│
-├── cloud/           # Cloud infrastructure
-│   └── aws-infrastructure.md      # AWS EC2/ECR/Cognito setup
-│
-└── playbooks/       # Troubleshooting & operations
-    ├── deployment-setup.md        # Staging/production deployment
-    ├── project-execution-lessons.md # Lessons from 109 sprints
-    └── database-recovery.md       # Disaster recovery
-```
-
-## Using This Cookbook
-
-### For Developers
-
-1. Before starting a new feature, check if a relevant recipe exists
-2. Follow recipes step-by-step - they're battle-tested
-3. **Contribute back**: Update recipes with new learnings
-
-### For Claude Code Agents
-
-Recipes are designed to be agent-readable. When working on a task:
-1. Check the cookbook for relevant patterns
-2. Follow the recipe structure
-3. Report deviations in postmortem
-
-### For External Sharing
-
-Selected recipes are synced to Mintlify for public documentation:
-- `/Volumes/Foundry/Development/CorrData/mintlify-docs/cookbook/`
-- Run `npm run sync-cookbook` to update
-
-## Example: Using a Recipe
-
-Here's how to use the Sprint Workflow recipe:
-
-**1. Check the Context section** - Make sure this recipe applies:
-```markdown
-## Context
-**When to use this recipe:**
-- Starting any new sprint in CorrData
-- Coordinating multiple work streams
-```
-
-**2. Gather the Ingredients** - Ensure prerequisites are met:
-```markdown
-## Ingredients
-- [ ] Sprint planning file in docs/sprints/1-todo/
-- [ ] Claude Code with slash commands configured
-- [ ] Database running
-```
-
-**3. Follow the Steps** - Execute in order:
 ```bash
-/sprint-start 106        # Step 1: Initialize
-# ... Plan agent runs    # Step 2: Team design
-# Answer questions       # Step 3: Clarify
-/sprint-next 106         # Step 4+: Implementation
-/sprint-complete 106     # Final: Complete
+# Initialize a new project with sprint workflow
+./scripts/init-project.sh /path/to/new-project my-project-name
 ```
 
-**4. Check Learnings** - Avoid known pitfalls:
-```markdown
-## Anti-Patterns
-### Don't: Spawn Agents Without File Ownership
-**Why it's bad**: Merge conflicts, race conditions
+## What's Included
+
+```
+ai-playbook/
+├── commands/           # Slash commands for Claude Code
+│   ├── sprint-*.md     # Sprint lifecycle (/sprint-start, /sprint-next, etc.)
+│   ├── epic-*.md       # Epic management (/epic-new, /epic-start, etc.)
+│   └── project-*.md    # Project setup (/project-create)
+│
+├── agents/             # Specialized agent definitions
+│   ├── context-fetcher.md
+│   ├── date-checker.md
+│   ├── file-creator.md
+│   └── test-runner.md
+│
+├── skills/             # Reusable skill definitions
+│   ├── validate-graphql.md
+│   ├── validate-mcp.md
+│   ├── run-migrations.md
+│   ├── lint-fix.md
+│   └── smoke-tests.md
+│
+├── templates/          # Project templates
+│   ├── project/        # New project boilerplate
+│   │   ├── CLAUDE.md
+│   │   └── .claude/
+│   └── sprint-template.md
+│
+├── workflows/          # Development process documentation
+├── patterns/           # Code pattern documentation
+├── playbooks/          # How-to guides
+│
+├── sprint-steps.json   # Sprint workflow step definitions
+└── scripts/
+    ├── setup-claude.sh   # Set up ~/.claude symlinks
+    └── init-project.sh   # Initialize new project
 ```
 
-**5. Contribute Back** - If you learn something new, update the recipe!
+## Sprint Workflow
+
+The playbook includes a complete sprint workflow system:
+
+```bash
+/sprint-start 1      # Initialize sprint, spawn Plan agent
+/sprint-next 1       # Advance to next step
+/sprint-status 1     # Check current progress
+/sprint-complete 1   # Finish sprint with checklist
+```
+
+### Workflow Phases
+
+| Phase | Steps | Description |
+|-------|-------|-------------|
+| 1. Planning | 1.1-1.4 | Read sprint, design architecture, clarify requirements |
+| 2. Implementation | 2.1-2.4 | TDD: write tests, implement, run tests, fix failures |
+| 3. Validation | 3.1-3.4 | Verify migrations, quality review, refactor |
+| 4. Documentation | 4.1 | Generate dialog examples |
+| 5. Commit | 5.1 | Stage and commit changes |
+| 6. Completion | 6.1-6.4 | Update sprint file, checklist, close |
+
+## Epic Management
+
+Organize sprints into epics:
+
+```bash
+/epic-new            # Create new epic
+/epic-start 1        # Start working on epic
+/epic-status 1       # Check epic progress
+/epic-complete 1     # Complete epic
+```
+
+## Commands Reference
+
+### Sprint Commands
+| Command | Description |
+|---------|-------------|
+| `/sprint-new` | Create a new sprint from template |
+| `/sprint-start <N>` | Initialize and start sprint N |
+| `/sprint-next <N>` | Advance to next step |
+| `/sprint-status <N>` | Show current progress |
+| `/sprint-complete <N>` | Run checklist and complete |
+| `/sprint-blocked <N>` | Mark as blocked |
+| `/sprint-abandon <N>` | Abandon sprint |
+
+### Epic Commands
+| Command | Description |
+|---------|-------------|
+| `/epic-new` | Create new epic |
+| `/epic-start <N>` | Start epic |
+| `/epic-status <N>` | Show epic status |
+| `/epic-list` | List all epics |
+| `/epic-complete <N>` | Complete epic |
+| `/epic-archive <N>` | Archive completed epic |
+
+### Project Commands
+| Command | Description |
+|---------|-------------|
+| `/project-create` | Initialize new project |
+| `/project-update` | Sync workflow updates |
+
+## Documentation
+
+### Workflows
+- [Sprint Workflow v2](workflows/sprint-workflow-v2.md) - Complete sprint lifecycle
+- [Development Infrastructure](workflows/development-infrastructure.md) - Agents, skills, commands
+- [Documentation Approach](workflows/documentation-approach.md) - How to document
+
+### Patterns
+- [GraphQL Schema](patterns/graphql-schema.md) - GraphQL with Strawberry
+- [Provider Pattern](patterns/provider-pattern.md) - External data abstraction
+- [MCP Tool Registry](patterns/mcp-tool-registry.md) - LLM tool definitions
+
+### Playbooks
+- [Adding External Data Source](playbooks/adding-external-data-source.md)
+- [Onboarding MCP Tool](playbooks/onboarding-mcp-tool.md)
+- [Project Execution Lessons](playbooks/project-execution-lessons.md)
+
+## How It Works
+
+The playbook uses symlinks to integrate with Claude Code:
+
+```
+~/.claude/
+├── commands -> /path/to/ai-playbook/commands/
+├── agents -> /path/to/ai-playbook/agents/
+├── skills -> /path/to/ai-playbook/skills/
+├── templates -> /path/to/ai-playbook/templates/
+└── sprint-steps.json -> /path/to/ai-playbook/sprint-steps.json
+```
+
+This means:
+- **Single source of truth**: All commands live in the playbook repo
+- **Easy updates**: `git pull` updates all your commands
+- **Portable**: Clone on new machine, run setup script, done
 
 ## Contributing
 
-### Adding a New Recipe
+1. Fork the repo
+2. Make changes to commands/patterns/workflows
+3. Test with a real project
+4. Submit PR
 
-1. Choose the appropriate category (workflow, pattern, integration, playbook)
-2. Use the template: `docs/cookbook/_TEMPLATE.md`
-3. Include real examples from actual sprints
-4. Document learnings and anti-patterns
-5. Update this README with the new recipe
+## License
 
-### Updating Existing Recipes
-
-1. After each sprint, review relevant recipes
-2. Add new learnings to the "Learnings" section
-3. Update anti-patterns if you discovered new pitfalls
-4. Increment the version if significant changes
-
-## Recipe Index
-
-### Workflows
-
-| Recipe | Description | Version | Last Updated |
-|--------|-------------|---------|--------------|
-| [VS Code Setup](workflows/vscode-setup.md) | Multi-terminal setup for parallel Claude agents | 1.0 | 2025-12-18 |
-| [Sprint Workflow](workflows/sprint-workflow-v2.md) | Parallel agent development, epic/sprint lifecycle | 2.2 | 2025-12-14 |
-| [Development Sequence](workflows/development-sequence.md) | Optimal build order for maximum synergy | 1.0 | 2025-12-14 |
-| [Database Migrations](workflows/database-migrations.md) | Schema evolution with Alembic | 1.0 | 2025-12-14 |
-| [Development Infrastructure](workflows/development-infrastructure.md) | Agents, skills, commands setup | 1.0 | 2025-12-13 |
-| [Documentation Approach](workflows/documentation-approach.md) | How we document everything | 1.0 | 2025-12-13 |
-| [Postmortem Process](workflows/postmortem-process.md) | Sprint retrospectives & action items | 1.0 | 2025-12-13 |
-
-### Patterns
-
-| Recipe | Description | Version | Last Updated |
-|--------|-------------|---------|--------------|
-| [Tech Stack Reference](patterns/tech-stack-reference.md) | All libraries, components, and rationale | 1.0 | 2025-12-14 |
-| [Three-Layer Database](patterns/three-layer-database.md) | PostgreSQL + TimescaleDB + PostGIS + Neo4j | 1.0 | 2025-12-14 |
-| [Provider Pattern](patterns/provider-pattern.md) | External data provider abstraction | 1.0 | 2025-12-14 |
-| [GraphQL Schema Design](patterns/graphql-schema.md) | Strawberry types, DataLoaders, N+1 prevention | 1.0 | 2025-12-14 |
-| [MCP Tool Registry](patterns/mcp-tool-registry.md) | LLM tool definitions with JSON Schema | 1.0 | 2025-12-14 |
-| [Domain Model Layering](patterns/domain-model-layering.md) | SQLAlchemy → Dataclass → Pydantic → Strawberry | 1.0 | 2025-12-14 |
-| [Alert Engine](patterns/alert-engine.md) | Rule-based alerting system | 1.0 | 2025-12-14 |
-| [Configuration Management](patterns/configuration-management.md) | Environment & settings | 1.0 | 2025-12-14 |
-
-### Integrations
-
-| Recipe | Description | Version | Last Updated |
-|--------|-------------|---------|--------------|
-| FEMA Flood Zones | NFHL REST API integration | 1.0 | Sprint 112 |
-| USGS Seismicity | Earthquake catalog | 1.0 | Sprint 110 |
-| InSAR Subsidence | Satellite displacement data | 1.0 | Sprint 111 |
-
-### Cloud
-
-| Recipe | Description | Version | Last Updated |
-|--------|-------------|---------|--------------|
-| [AWS Infrastructure](cloud/aws-infrastructure.md) | EC2, ECR, Cognito, CloudWatch setup | 1.0 | 2025-12-13 |
-
-### Playbooks
-
-| Recipe | Description | Version | Last Updated |
-|--------|-------------|---------|--------------|
-| [v0 UI Generation](playbooks/v0-ui-generation.md) | AI-powered React/shadcn/ui component generation | 1.0 | 2025-12-14 |
-| [Adding External Data Source](playbooks/adding-external-data-source.md) | Step-by-step external API integration | 1.0 | 2025-12-14 |
-| [Onboarding MCP Tool](playbooks/onboarding-mcp-tool.md) | Creating new LLM-accessible tools | 1.0 | 2025-12-14 |
-| [Creating REST Endpoint](playbooks/creating-rest-endpoint.md) | When and how to add REST endpoints | 1.0 | 2025-12-14 |
-| [Project Execution Lessons](playbooks/project-execution-lessons.md) | Lessons from 119+ sprints | 1.0 | 2025-12-14 |
-| [Deployment Setup](playbooks/deployment-setup.md) | Staging & production deployment | 1.0 | 2025-12-13 |
-
----
-
-## ADR Synthesis
-
-For a complete analysis of all 49 ADRs and their mapping to cookbook recipes, see:
-- **[ADR-SYNTHESIS.md](ADR-SYNTHESIS.md)** - Full audit report with priority order
-- **Sprint 116** - Systematic recipe creation from ADRs
-
----
-
-## Maintenance
-
-This cookbook is a **living document**. It should be:
-- Updated after every sprint postmortem
-- Reviewed quarterly for outdated recipes
-- Synced to Mintlify for external sharing
-- Cross-referenced with ADRs when adding new recipes
-
-**Owner**: Development Team
-**Last Review**: 2025-12-14
-**Sprints Covered**: 1-119
+MIT
