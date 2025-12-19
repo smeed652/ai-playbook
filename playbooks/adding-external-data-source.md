@@ -772,10 +772,10 @@ Expected: All tests pass with >90% coverage.
 ## Step 7: Update Documentation
 
 ### What You'll Do
-Document the new provider in the cookbook, update relevant ADRs, and create usage examples.
+Document the new provider in the playbook, update relevant ADRs, and create usage examples.
 
 ### Files to Create/Modify
-- `docs/cookbook/patterns/provider-pattern.md` (update)
+- `docs/playbook/patterns/provider-pattern.md` (update)
 - `docs/examples/using-veg-cover-data.md` (create)
 
 ### Code

@@ -30,17 +30,17 @@ Our documentation follows these principles:
 │  │  • Product guides                                     │     │
 │  │  • API reference                                      │     │
 │  │  • MCP integration                                    │     │
-│  │  • Cookbook (selected recipes)                        │     │
+│  │  • Playbook (selected recipes)                        │     │
 │  │                                                       │     │
 │  │  Hosted: Mintlify (docs.corrdata.com)                │     │
 │  └──────────────────────────────────────────────────────┘     │
 │                            ▲                                   │
-│                            │ sync-cookbook-to-mintlify.sh     │
+│                            │ sync-playbook-to-mintlify.sh     │
 │                            │                                   │
 │  INTERNAL (Development)              POC/docs/                 │
 │  ┌──────────────────────────────────────────────────────┐     │
 │  │  /architecture/     ADRs, system design              │     │
-│  │  /cookbook/         Battle-tested recipes            │     │
+│  │  /playbook/         Battle-tested recipes            │     │
 │  │  /sprints/          Sprint planning and tracking     │     │
 │  │  /examples/         Dialog examples, scenarios       │     │
 │  │  /research/         Research reports                 │     │
@@ -118,9 +118,9 @@ What becomes easier or more difficult because of this change?
 - Team strategy (added during sprint)
 - Postmortem (added after completion)
 
-### Cookbook Recipes
+### Playbook Recipes
 
-**Location**: `docs/cookbook/{category}/{recipe}.md`
+**Location**: `docs/playbook/{category}/{recipe}.md`
 
 **Categories**:
 - `workflows/` - Development processes
@@ -128,7 +128,7 @@ What becomes easier or more difficult because of this change?
 - `integrations/` - External system integration
 - `playbooks/` - Troubleshooting guides
 
-**Template**: Uses `docs/cookbook/_TEMPLATE.md`
+**Template**: Uses `docs/playbook/_TEMPLATE.md`
 
 **Required Sections**:
 - Context (when to use/not use)
@@ -178,18 +178,18 @@ What becomes easier or more difficult because of this change?
     │
     ├─ Postmortem added to sprint file
     ├─ Dialog example created (if significant feature)
-    └─ Cookbook recipes updated with learnings
+    └─ Playbook recipes updated with learnings
 ```
 
 ### After Sprint
 
-1. **Update Cookbook**: Add learnings to relevant recipes
+1. **Update Playbook**: Add learnings to relevant recipes
 2. **Create ADR**: If architectural decision was made
 3. **Sync to Mintlify**: If external-facing content changed
 
 ### Quarterly Review
 
-1. Review all cookbook recipes for accuracy
+1. Review all playbook recipes for accuracy
 2. Archive outdated ADRs
 3. Update roadmap documentation
 4. Sync major updates to Mintlify
@@ -224,8 +224,8 @@ The `CLAUDE.md` file in each project root provides AI-specific instructions:
 Selected internal docs are synced to Mintlify for external sharing:
 
 ```bash
-# Sync cookbook recipes
-./scripts/sync-cookbook-to-mintlify.sh
+# Sync playbook recipes
+./scripts/sync-playbook-to-mintlify.sh
 
 # Preview locally
 cd /Volumes/Foundry/Development/CorrData/mintlify-docs
@@ -236,7 +236,7 @@ git push origin main
 ```
 
 **What Gets Synced**:
-- Cookbook recipes (curated)
+- Playbook recipes (curated)
 - API documentation
 - MCP integration guides
 - Product guides
@@ -282,15 +282,15 @@ git push origin main
 ## Maintenance
 
 ### Weekly
-- Review sprint postmortems for cookbook updates
+- Review sprint postmortems for playbook updates
 - Update recipes with new learnings
 
 ### Monthly
-- Audit cookbook index for completeness
+- Audit playbook index for completeness
 - Check Mintlify sync status
 
 ### Quarterly
-- Full cookbook review
+- Full playbook review
 - ADR cleanup
 - Roadmap updates
 

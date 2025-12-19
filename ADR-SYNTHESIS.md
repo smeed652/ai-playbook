@@ -1,14 +1,14 @@
-# ADR Synthesis Report for Cookbook Recipes
+# ADR Synthesis Report for Playbook Recipes
 
 **Generated**: 2025-12-13
 **Source**: Analysis of 49 Architecture Decision Records
-**Purpose**: Guide cookbook recipe creation from architectural decisions
+**Purpose**: Guide playbook recipe creation from architectural decisions
 
 ## ADR Inventory by Category
 
 ### Data Architecture (ADR-001 to ADR-008)
 
-| ADR | Title | Status | Cookbook Category |
+| ADR | Title | Status | Playbook Category |
 |-----|-------|--------|-------------------|
 | ADR-001 | Three-Layer Hybrid Data Architecture | Accepted | patterns |
 | ADR-002 | GraphQL over REST API | Accepted | patterns |
@@ -21,7 +21,7 @@
 
 ### Implementation Patterns (ADR-009 to ADR-022)
 
-| ADR | Title | Status | Cookbook Category |
+| ADR | Title | Status | Playbook Category |
 |-----|-------|--------|-------------------|
 | ADR-009 | SHAP for Model Explainability | Accepted | patterns |
 | ADR-010 | Alembic for Database Migrations | Accepted | workflows |
@@ -40,7 +40,7 @@
 
 ### Architecture & Extensibility (ADR-023 to ADR-049)
 
-| ADR | Title | Status | Cookbook Category |
+| ADR | Title | Status | Playbook Category |
 |-----|-------|--------|-------------------|
 | ADR-023 | PHMSA Benchmark Integration | Accepted | integrations |
 | ADR-024 | Modular MCP Architecture | Accepted | patterns |

@@ -192,7 +192,7 @@ Update: `pre_flight_checklist.git_status_clean = true/false`
    | `[done]` | Already resolved | Mark with link to resolution |
    | `[sprint]` | Needs dedicated sprint | Create todo sprint, add to backlog |
    | `[backlog]` | Future work | Add to `docs/sprints/backlog.md` |
-   | `[pattern]` | Reusable pattern | Add to cookbook |
+   | `[pattern]` | Reusable pattern | Add to playbook |
 
    **Guidelines for postmortem content**:
    - Be specific about what went well (e.g., "Pattern reuse from Sprint X saved time")
@@ -215,7 +215,7 @@ Update: `pre_flight_checklist.git_status_clean = true/false`
    - Include source sprint reference
 
    **For `[pattern]` items**:
-   - Add to appropriate cookbook file in `docs/cookbook/`
+   - Add to appropriate playbook file in `docs/playbook/`
    - Or create new pattern file if significant
 
    **For `[done]` items**:

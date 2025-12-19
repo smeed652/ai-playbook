@@ -49,15 +49,15 @@ All pattern recipes in this directory:
 ## Related Documentation
 
 - **ADRs**: `docs/architecture/decisions/` - Architecture decision records (source material)
-- **Workflows**: `docs/cookbook/workflows/` - Development process recipes
-- **Playbooks**: `docs/cookbook/playbooks/` - Operational runbooks
-- **Integrations**: `docs/cookbook/integrations/` - External system integration guides
+- **Workflows**: `docs/playbook/workflows/` - Development process recipes
+- **Playbooks**: `docs/playbook/playbooks/` - Operational runbooks
+- **Integrations**: `docs/playbook/integrations/` - External system integration guides
 
 ## Contributing
 
 When adding new patterns:
 
-1. Use the template at `docs/cookbook/_TEMPLATE.md`
+1. Use the template at `docs/playbook/_TEMPLATE.md`
 2. Extract real code from `src/` directory (no made-up examples)
 3. Reference relevant ADRs in metadata
 4. Include verification steps

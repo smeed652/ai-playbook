@@ -44,7 +44,7 @@
 │  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐   │
 │  │ [done]    │  │ [sprint]  │  │ [backlog] │  │ [pattern] │   │
 │  │ Mark done │  │ Create    │  │ Add to    │  │ Add to    │   │
-│  │ with link │  │ todo      │  │ backlog   │  │ cookbook  │   │
+│  │ with link │  │ todo      │  │ backlog   │  │ playbook  │   │
 │  └───────────┘  └───────────┘  └───────────┘  └───────────┘   │
 │                       │              │              │           │
 │                       ▼              ▼              ▼           │
@@ -130,7 +130,7 @@ Reusable approaches worth documenting.
 - [x] `[done]` Created Sprint 116 for Regions backend → [Sprint 116](path/to/sprint)
 - [ ] `[sprint]` Add authentication to API endpoints → Sprint 117
 - [ ] `[backlog]` Audit other pages for backend gaps
-- [ ] `[pattern]` Document GraphQL transform pattern in cookbook
+- [ ] `[pattern]` Document GraphQL transform pattern in playbook
 ```
 
 ## Action Item Tags
@@ -140,7 +140,7 @@ Reusable approaches worth documenting.
 | `[done]` | Item already resolved during sprint | Mark complete with link |
 | `[sprint]` | Needs dedicated sprint (significant work) | Create sprint file, add to backlog |
 | `[backlog]` | Future work, not urgent | Add to backlog.md |
-| `[pattern]` | Reusable code or process pattern | Add to cookbook |
+| `[pattern]` | Reusable code or process pattern | Add to playbook |
 
 ### Decision Guide
 
@@ -154,7 +154,7 @@ Does it require more than 2 hours of focused work?
   └─ No → Continue...
 
 Is it a reusable pattern or process improvement?
-  └─ Yes → [pattern] - Document in cookbook
+  └─ Yes → [pattern] - Document in playbook
   └─ No → [backlog] - Track for future
 ```
 

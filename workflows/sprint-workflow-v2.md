@@ -334,7 +334,7 @@ Postmortem is now **auto-generated** during `/sprint-complete`. It captures:
 | `[done]` | Already resolved | Marked with link |
 | `[sprint]` | Needs dedicated sprint | New todo sprint + backlog |
 | `[backlog]` | Future work | `docs/sprints/backlog.md` |
-| `[pattern]` | Reusable pattern | Cookbook |
+| `[pattern]` | Reusable pattern | Playbook |
 
 **Backlog Integration**:
 - Action items are added to `docs/sprints/backlog.md`

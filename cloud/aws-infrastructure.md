@@ -371,4 +371,4 @@ echo "Rollback complete"
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | 2025-12-13 | Initial AWS infrastructure cookbook |
+| 1.0 | 2025-12-13 | Initial AWS infrastructure playbook |

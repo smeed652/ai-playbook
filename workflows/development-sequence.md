@@ -401,7 +401,7 @@ CREATE INDEX idx_my_entities_parent ON my_entities(parent_uuid);
 ### Step 5.3: Documentation
 
 ```markdown
-# Add to cookbook if pattern is reusable
+# Add to playbook if pattern is reusable
 # Update API docs if new endpoints
 # Add examples to dialog examples
 ```

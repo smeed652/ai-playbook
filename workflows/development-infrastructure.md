@@ -224,7 +224,7 @@ Parent Agent:
 1. Update `~/.claude/sprint-steps.json`
 2. Add backward compatibility check for version field
 3. Update slash commands to handle new workflow
-4. Document changes in cookbook
+4. Document changes in playbook
 
 ## Related Recipes
 
